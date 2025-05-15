@@ -1,11 +1,9 @@
 import { Outlet } from 'react-router-dom';
-// import Navbar from './Navbar';
 import { motion } from 'framer-motion';
 
 const Layout = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* <Navbar /> */}
       <motion.main 
         className="flex-grow p-4 md:p-8"
         initial={{ opacity: 0, y: 10 }}

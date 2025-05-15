@@ -9,13 +9,13 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// ✅ Allowed Origins
+// Allowed Origins
 const allowedOrigins = [
   'http://localhost:5173',
   'https://staff-app-three.vercel.app',
 ];
 
-// ✅ Middleware
+// Middleware
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -27,7 +27,7 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// ✅ MongoDB Connection
+// MongoDB Connection
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/staff-management');
@@ -38,15 +38,15 @@ const connectDB = async () => {
   }
 };
 
-// ✅ Routes
+// Routes
 app.use('/api/staff', staffRoutes);
 
-// ✅ Fallback route
+// Fallback route
 app.use('*', (req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
 
-// ✅ Start server
+// Start server
 connectDB().then(() => {
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
